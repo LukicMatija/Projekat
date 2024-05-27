@@ -3,6 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package prijava;
+import java.sql.*;
+import konekcija.NapraviKonekciju;
+import studentRepository.studentiLista;
 
 /**
  *
@@ -14,7 +17,9 @@ public class PriJava {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        studentiLista sl = new studentiLista();
+        System.out.println(sl.napraviListu());
+        sl.ispisiListu();
     }
     
 }
