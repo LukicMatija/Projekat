@@ -3,9 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package prijava;
-import java.sql.*;
-import konekcija.NapraviKonekciju;
-import studentRepository.studentiLista;
+import praksa.Praksa;
+import praksa.praksaRepository.praksaRepository;
+import student.studentRepository.studentiLista;
 
 /**
  *
@@ -18,8 +18,19 @@ public class PriJava {
      */
     public static void main(String[] args) {
         studentiLista sl = new studentiLista();
-        System.out.println(sl.napraviListu());
-        sl.ispisiListu();
+        int result = sl.napraviListu();
+        if (result == 1) {
+            sl.ispisiListu();
+        } else {
+            System.out.println("Error occurred while creating the student list.");
+        }
+
+        // Now perform other operations (if needed)
+        praksaRepository pr = new praksaRepository();
+        pr.dodaj(2, 1, null, null);
+        for(Praksa praksa : pr.prikazi()){
+            System.out.println(praksa.toString());
+        }   
     }
     
 }

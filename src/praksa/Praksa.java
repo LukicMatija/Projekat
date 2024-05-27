@@ -17,6 +17,19 @@ public class Praksa {
     private Date datumOd;
     private Date datumDo;
 
+    public Praksa(int idPrakse, int idStudenta, int idKompanije, Date datumOd, Date datumDo) {
+        this.idPrakse = idPrakse;
+        this.idStudenta = idStudenta;
+        this.idKompanije = idKompanije;
+        this.datumOd = datumOd;
+        this.datumDo = datumDo;
+    }
+
+    @Override
+    public String toString() {
+        return "Praksa{" + "idPrakse=" + idPrakse + ", idStudenta=" + idStudenta + ", idKompanije=" + idKompanije + ", datumOd=" + datumOd + ", datumDo=" + datumDo + '}';
+    }
+
     public int getIdPrakse() {
         return idPrakse;
     }
