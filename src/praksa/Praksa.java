@@ -5,6 +5,7 @@
 package praksa;
 
 import java.util.Date;
+import student.studentRepository.studentiLista;
 
 /**
  *
@@ -25,11 +26,18 @@ public class Praksa {
         this.datumDo = datumDo;
     }
 
+    public Praksa() {
+    }
+    
     @Override
     public String toString() {
         return "Praksa{" + "idPrakse=" + idPrakse + ", idStudenta=" + idStudenta + ", idKompanije=" + idKompanije + ", datumOd=" + datumOd + ", datumDo=" + datumDo + '}';
     }
-
+    public String ispis(){
+        studentiLista sl = new studentiLista();
+        sl.napraviListu();
+        return "Ime: " + sl.studentiHM.get(idStudenta).getIme() + " Prezime: " + sl.studentiHM.get(idStudenta).getPrezime();
+    }
     public int getIdPrakse() {
         return idPrakse;
     }

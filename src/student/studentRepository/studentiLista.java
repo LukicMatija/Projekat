@@ -12,7 +12,7 @@ import java.util.HashMap;
  * @author stefa
  */
 public class studentiLista{
-    HashMap<Integer, Student> studentiHM = new HashMap<>();
+    public HashMap<Integer, Student> studentiHM = new HashMap<>();
     public int napraviListu(){
         try {
             String url = "jdbc:mysql://localhost:3306/projekat";

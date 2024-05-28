@@ -35,9 +35,9 @@ public class praksaRepository {
             System.out.println(ex);
         }
     }
-    public LinkedList<Praksa> prikazi(){
+    public void prikazi(){
         try {
-            LinkedList<Praksa> listaPraksi = new LinkedList<>();
+            //LinkedList<Praksa> listaPraksi = new LinkedList<>();
             String url = "jdbc:mysql://localhost:3306/projekat";
             String username = "root";
             String password = "";
@@ -53,15 +53,16 @@ public class praksaRepository {
                 Date datumOd = rs.getDate(4);
                 Date datumDo = rs.getDate(5);
                 Praksa p = new Praksa(idPraksa,idStudenta, idKompanije, datumOd, datumDo);
-                listaPraksi.add(p);
+                System.out.println(p.ispis());
+                //listaPraksi.add(p);
             }
             statement.close();
             conn.close();
             
-            return listaPraksi;
+            //return listaPraksi;
         } catch (SQLException ex) {
             System.out.println(ex);
-            return null;
+            //return null;
         }
     }
     public void obrisi(){

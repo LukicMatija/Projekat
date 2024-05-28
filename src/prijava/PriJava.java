@@ -19,18 +19,11 @@ public class PriJava {
     public static void main(String[] args) {
         studentiLista sl = new studentiLista();
         int result = sl.napraviListu();
-        if (result == 1) {
-            sl.ispisiListu();
-        } else {
-            System.out.println("Error occurred while creating the student list.");
-        }
-
-        // Now perform other operations (if needed)
+        sl.ispisiListu();
         praksaRepository pr = new praksaRepository();
-        pr.dodaj(2, 1, null, null);
-        for(Praksa praksa : pr.prikazi()){
-            System.out.println(praksa.toString());
-        }   
+        //pr.dodaj(2, 1, null, null);
+        pr.prikazi();
+        
     }
     
 }
