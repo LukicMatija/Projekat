@@ -16,6 +16,15 @@ public class Kompanija {
     private String mail;
     private String mesto;
 
+    public Kompanija(int idKompanije, String pib, String ime, String kontakt, String mail, String mesto) {
+        this.idKompanije = idKompanije;
+        this.pib = pib;
+        this.ime = ime;
+        this.kontakt = kontakt;
+        this.mail = mail;
+        this.mesto = mesto;
+    }
+
     public int getIdKompanije() {
         return idKompanije;
     }

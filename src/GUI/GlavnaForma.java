@@ -4,6 +4,12 @@
  */
 package GUI;
 
+import java.util.LinkedList;
+import javax.swing.JTextField;
+import kompanija.Kompanija;
+import student.Student;
+import ugovor.Ugovor;
+
 /**
  *
  * @author student2
@@ -16,7 +22,91 @@ public class GlavnaForma extends javax.swing.JFrame {
     public GlavnaForma() {
         initComponents();
     }
+    public LinkedList<Student> studenti = new LinkedList<>();
+    public LinkedList<Ugovor> ugovori = null;
+    public Kompanija kompanija = null;
+    public LinkedList<Kompanija> kompanije = null;
+    public Student student = null;
+    
+    public JTextField getTxtFieldBrInd() {
+        return txtFieldBrInd;
+    }
 
+    public void setTxtFieldBrInd(JTextField txtFieldBrInd) {
+        this.txtFieldBrInd = txtFieldBrInd;
+    }
+
+    public JTextField getTxtFieldIme() {
+        return txtFieldIme;
+    }
+
+    public void setTxtFieldIme(JTextField txtFieldIme) {
+        this.txtFieldIme = txtFieldIme;
+    }
+
+    public JTextField getTxtFieldImeKomp() {
+        return txtFieldImeKomp;
+    }
+
+    public void setTxtFieldImeKomp(JTextField txtFieldImeKomp) {
+        this.txtFieldImeKomp = txtFieldImeKomp;
+    }
+
+    public JTextField getTxtFieldKontakt() {
+        return txtFieldKontakt;
+    }
+
+    public void setTxtFieldKontakt(JTextField txtFieldKontakt) {
+        this.txtFieldKontakt = txtFieldKontakt;
+    }
+
+    public JTextField getTxtFieldMailKomp() {
+        return txtFieldMailKomp;
+    }
+
+    public void setTxtFieldMailKomp(JTextField txtFieldMailKomp) {
+        this.txtFieldMailKomp = txtFieldMailKomp;
+    }
+
+    public JTextField getTxtFieldPIB() {
+        return txtFieldPIB;
+    }
+
+    public void setTxtFieldPIB(JTextField txtFieldPIB) {
+        this.txtFieldPIB = txtFieldPIB;
+    }
+
+    public JTextField getTxtFieldPrezime() {
+        return txtFieldPrezime;
+    }
+
+    public void setTxtFieldPrezime(JTextField txtFieldPrezime) {
+        this.txtFieldPrezime = txtFieldPrezime;
+    }
+
+    public JTextField getTxtFieldStepenStud() {
+        return txtFieldStepenStud;
+    }
+
+    public void setTxtFieldStepenStud(JTextField txtFieldStepenStud) {
+        this.txtFieldStepenStud = txtFieldStepenStud;
+    }
+
+    public JTextField getTxtFieldStudMail() {
+        return txtFieldStudMail;
+    }
+
+    public void setTxtFieldStudMail(JTextField txtFieldStudMail) {
+        this.txtFieldStudMail = txtFieldStudMail;
+    }
+
+    public JTextField getTxtFieldStudProg() {
+        return txtFieldStudProg;
+    }
+
+    public void setTxtFieldStudProg(JTextField txtFieldStudProg) {
+        this.txtFieldStudProg = txtFieldStudProg;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -108,11 +198,19 @@ public class GlavnaForma extends javax.swing.JFrame {
         txtFieldStepenStud.setEditable(false);
 
         btnIzaberiStud.setText("Izaberi studenta");
+        btnIzaberiStud.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIzaberiStudActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("PIB:");
 
+        txtFieldPIB.setEnabled(false);
+
         jLabel8.setText("Ime kompanije:");
 
+        txtFieldImeKomp.setEnabled(false);
         txtFieldImeKomp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFieldImeKompActionPerformed(evt);
@@ -121,7 +219,11 @@ public class GlavnaForma extends javax.swing.JFrame {
 
         jLabel9.setText("Kontakt:");
 
+        txtFieldKontakt.setEnabled(false);
+
         jLabel10.setText("Mail:");
+
+        txtFieldMailKomp.setEnabled(false);
 
         jButton1.setText("Izaberi kompaniju");
         jButton1.setMaximumSize(new java.awt.Dimension(115, 28));
@@ -157,9 +259,9 @@ public class GlavnaForma extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtFieldKontakt, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtFieldMailKomp, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(279, 279, 279)
+                .addGap(272, 272, 272)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
+                .addGap(30, 30, 30))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -286,8 +388,22 @@ public class GlavnaForma extends javax.swing.JFrame {
     }//GEN-LAST:event_txtFieldImeKompActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        KompanijaForma kf = new KompanijaForma();
+        kf.setVisible(true);
+        kf.student=student;
+        kf.studenti = studenti;
+        setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnIzaberiStudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIzaberiStudActionPerformed
+        // TODO add your handling code here:
+        StudentForma sf = new StudentForma();
+        sf.kompanija = kompanija;
+        sf.kompanije = kompanije;
+        sf.ugovori = ugovori;
+        sf.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnIzaberiStudActionPerformed
 
     /**
      * @param args the command line arguments

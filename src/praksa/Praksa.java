@@ -5,6 +5,8 @@
 package praksa;
 
 import java.util.Date;
+import java.util.LinkedList;
+import student.Student;
 import student.studentRepository.studentiLista;
 
 /**
@@ -35,8 +37,8 @@ public class Praksa {
     }
     public String ispis(){
         studentiLista sl = new studentiLista();
-        sl.napraviListu();
-        return "Ime: " + sl.studentiHM.get(idStudenta).getIme() + " Prezime: " + sl.studentiHM.get(idStudenta).getPrezime();
+        LinkedList<Student> studenti = sl.napraviListu("","");
+        return "Ime: " + studenti.get(idStudenta).getIme() + " Prezime: " + studenti.get(idStudenta).getPrezime();
     }
     public int getIdPrakse() {
         return idPrakse;

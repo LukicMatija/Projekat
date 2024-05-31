@@ -2,28 +2,29 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package student.studentRepository;
+package kompanija.kompanijaRepository;
 
-import java.awt.List;
-import java.sql.*;
-import student.Student;
-import java.util.HashMap;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.LinkedList;
+import kompanija.Kompanija;
+import student.Student;
 /**
  *
- * @author stefa
+ * @author mluki
  */
-public class studentiLista{
-    
-    public LinkedList<Student> napraviListu(String ime, String prezime){
-        
+public class KompanijaRepository {
+    public LinkedList<Kompanija> napraviListu(String ime){
         try {
-            LinkedList<Student> studenti = new LinkedList<>();
+            LinkedList<Kompanija> kompanije = new LinkedList<>();
             String url = "jdbc:mysql://localhost:3306/projekat";
             String username = "root";
             String password = "";
             Connection conn = DriverManager.getConnection(url, username, password);
-            String upit = "SELECT * FROM student WHERE ime LIKE '" + ime + "%' and prezime LIKE '" + prezime + "%'";
+            String upit = "SELECT * FROM kompanija WHERE ime LIKE '" + ime + "%'";
             PreparedStatement ps = conn.prepareStatement(upit);
             
             
@@ -31,27 +32,25 @@ public class studentiLista{
             
             while(rs.next()){
                 System.out.println(rs.getString(2));
-                Student student = new Student(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12));
-                studenti.add(student);
+                Kompanija kompanija = new Kompanija(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
+                kompanije.add(kompanija);
             }
             ps.close();
             conn.close();
-            return studenti;
+            return kompanije;
         } catch (SQLException ex) {
             System.out.println(ex);
             return null;
         }
+        
     }
-
-   
-    public void ispisiListu(LinkedList<Student> studenti){
+    public void ispisiListu(LinkedList<Kompanija> studenti){
         if(studenti == null ){
             System.out.println("Prazna lista");
             return;
         }
-        for (Student student : studenti) {
-            System.out.println(student.getIme() + " " + student.getPrezime());
+        for (Kompanija student : studenti) {
+            System.out.println(student.getIme());
         }
     }
 }
-
