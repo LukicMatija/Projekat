@@ -27,7 +27,6 @@ public class KompanijaForma extends javax.swing.JFrame {
         initComponents();
     }
     LinkedList<Student> studenti = null;
-    GlavnaForma gf = new GlavnaForma();
     public LinkedList<Ugovor> ugovori = null;
     public Kompanija kompanija = null;
     public LinkedList<Kompanija> kompanije = null;
@@ -147,26 +146,28 @@ public class KompanijaForma extends javax.swing.JFrame {
             Kompanija k = kompanije.get(tblKompanije.getSelectedRow());
             System.out.println(tblKompanije.getSelectedRow());
             this.setVisible(false);
-            gf.setVisible(true);
-            gf.kompanija = k;
-            gf.student = student;
-            gf.studenti = studenti;
-            gf.getTxtFieldPIB().setText(k.getPib());
-            gf.getTxtFieldImeKomp().setText(k.getIme());
-            gf.getTxtFieldKontakt().setText(k.getKontakt());
-            gf.getTxtFieldMailKomp().setText(k.getMail());
+            GlavnaForma.Instance.kompanija = k;
+            GlavnaForma.Instance.student = student;
+            GlavnaForma.Instance.studenti = studenti;
+            GlavnaForma.Instance.getTxtFieldPIB().setText(k.getPib());
+            GlavnaForma.Instance.getTxtFieldImeKomp().setText(k.getIme());
+            GlavnaForma.Instance.getTxtFieldKontakt().setText(k.getKontakt());
+            GlavnaForma.Instance.getTxtFieldMailKomp().setText(k.getMail());
             if(student!=null){
-                gf.getTxtFieldIme().setText(student.getIme());
-                gf.getTxtFieldPrezime().setText(student.getPrezime());
-                gf.getTxtFieldStepenStud().setText(student.getStepenStudija());
-                gf.getTxtFieldStudProg().setText(student.getStudijskiProgram());
-                gf.getTxtFieldBrInd().setText(student.getIndeks());
-                gf.getTxtFieldStudMail().setText(student.getStudentskiMail());
+                GlavnaForma.Instance.getTxtFieldIme().setText(student.getIme());
+                GlavnaForma.Instance.getTxtFieldPrezime().setText(student.getPrezime());
+                GlavnaForma.Instance.getTxtFieldStepenStud().setText(student.getStepenStudija());
+                GlavnaForma.Instance.getTxtFieldStudProg().setText(student.getStudijskiProgram());
+                GlavnaForma.Instance.getTxtFieldBrInd().setText(student.getIndeks());
+                GlavnaForma.Instance.getTxtFieldStudMail().setText(student.getStudentskiMail());
             }
             ugovorRepos ur = new ugovorRepos();
-            gf.ugovori = ur.napraviListu(kompanija.getIdKompanije());
+            GlavnaForma.ugovoriMF = ur.napraviListu(GlavnaForma.Instance.kompanija.getIdKompanije());
+            for (Ugovor ugovor : GlavnaForma.ugovoriMF) {
+                System.out.println(ugovor.toString());
+            }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Niste izabrali studenta", "Greska", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Niste izabrali kompaniju", "Greska", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnSacuvajActionPerformed
 

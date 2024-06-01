@@ -4,6 +4,7 @@
  */
 package prijava;
 import GUI.GlavnaForma;
+import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 import java.util.Date;
 import java.util.LinkedList;
@@ -26,7 +27,7 @@ public class PriJava {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        FlatLightLaf.setup();
+        FlatDarkLaf.setup();
         //studentiLista sl = new studentiLista();
         //LinkedList<Student> studenti = sl.napraviListu("Ma","");
         //sl.ispisiListu(studenti);
