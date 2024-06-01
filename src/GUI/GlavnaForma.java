@@ -18,15 +18,36 @@ import ugovor.Ugovor;
  * @author student2
  */
 public class GlavnaForma extends javax.swing.JFrame {
-
+    public static GlavnaForma Instance;
+    public JTextField txtIme;
+    public JTextField txtPrezime;
+    public JTextField txtStudProgram;
+    public JTextField txtBrInd;
+    public JTextField txtStudMail;
+    public JTextField txtStepenStud;
+    public JTextField txtPIB;
+    public JTextField txtImeKomp;
+    public JTextField txtKontakt;
+    public JTextField txtMailKomp;
     /**
      * Creates new form GlavnaForma
      */
     public GlavnaForma() {
         initComponents();
+        Instance = this;
+        txtIme = txtFieldIme;
+        txtPrezime = txtFieldPrezime;
+        txtBrInd = txtFieldBrInd;
+        txtStudProgram = txtFieldStudProg;
+        txtStepenStud = txtFieldStepenStud;
+        txtStudMail = txtFieldStudMail;
+        txtImeKomp = txtFieldImeKomp;
+        txtKontakt = txtFieldKontakt;
+        txtMailKomp = txtFieldMailKomp;
+        txtPIB = txtFieldPIB;
     }
     public LinkedList<Student> studenti = new LinkedList<>();
-    public LinkedList<Ugovor> ugovori = null;
+    public static LinkedList<Ugovor> ugovoriMF = null;
     public Kompanija kompanija = null;
     public LinkedList<Kompanija> kompanije = null;
     public Student student = null;
@@ -448,7 +469,7 @@ public class GlavnaForma extends javax.swing.JFrame {
         kf.setVisible(true);
         kf.student=student;
         kf.studenti = studenti;
-        setVisible(false);
+        //setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnIzaberiStudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIzaberiStudActionPerformed
@@ -456,13 +477,13 @@ public class GlavnaForma extends javax.swing.JFrame {
         StudentForma sf = new StudentForma();
         sf.kompanija = kompanija;
         sf.kompanije = kompanije;
-        sf.ugovori = ugovori;
+        sf.ugovori = ugovoriMF;
         sf.setVisible(true);
-        this.setVisible(false);
+        //this.setVisible(false);
     }//GEN-LAST:event_btnIzaberiStudActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if(ugovori != null && najveciUgovor(ugovori).before(new Date())){
+        if(ugovoriMF != null && najveciUgovor(ugovoriMF).before(new Date())){
             JOptionPane.showMessageDialog(null, "Ova kompanija nema vazeci ugovor", "Greska", JOptionPane.ERROR_MESSAGE);
             return;
         }

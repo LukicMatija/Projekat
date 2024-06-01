@@ -19,22 +19,27 @@ import ugovor.Ugovor;
  * @author mluki
  */
 public class ugovorRepos {
+    LinkedList<Ugovor> ugovori = new LinkedList<>();
+
+    public ugovorRepos() {
+    }
+    
     public LinkedList<Ugovor> napraviListu(int idK){
         try {
-            LinkedList<Ugovor> ugovori = new LinkedList<>();
             String url = "jdbc:mysql://localhost:3306/projekat";
             String username = "root";
             String password = "";
             Connection conn = DriverManager.getConnection(url, username, password);
-            String upit = "SELECT * FROM ugovor WHERE idKompanije LIKE ?" ;
+            String upit = "SELECT * FROM ugovor WHERE IDKompanije = ?";
+            //java.sql.Statement statement = conn.createStatement();
             PreparedStatement ps = conn.prepareStatement(upit);
             ps.setInt(1, idK);
-            
+            //java.sql.ResultSet rs2 = statement.executeQuery(upit);
             
             ResultSet rs = ps.executeQuery();
             
             while(rs.next()){
-                System.out.println(rs.getString(2));
+                System.out.println("Nema greske");
                 Ugovor ugovor = new Ugovor(rs.getInt(1), rs.getInt(2), rs.getDate(3), rs.getDate(4));
                 ugovori.add(ugovor);
             }
@@ -58,7 +63,6 @@ public class ugovorRepos {
     }
     public static void dodajUgovor(int idK, Date DatumOd, Date DatumDo){
         try {
-            LinkedList<Ugovor> ugovori = new LinkedList<>();
             String url = "jdbc:mysql://localhost:3306/projekat";
             String username = "root";
             String password = "";
