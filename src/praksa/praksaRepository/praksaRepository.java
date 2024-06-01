@@ -15,7 +15,7 @@ import praksa.Praksa;
  * @author stefa
  */
 public class praksaRepository {
-    public void dodaj(int idStudenta, int idKompanije, Date datumOd, Date datumDo){
+    public static void dodaj(int idStudenta, int idKompanije, Date datumOd, Date datumDo){
         try {
             String url = "jdbc:mysql://localhost:3306/projekat";
             String username = "root";
@@ -26,8 +26,8 @@ public class praksaRepository {
             PreparedStatement ps = conn.prepareStatement(upit);
             ps.setInt(1, idStudenta);
             ps.setInt(2, idKompanije);
-            ps.setDate(3, (java.sql.Date) datumOd);
-            ps.setDate(4, (java.sql.Date) datumDo);
+            ps.setDate(3, new java.sql.Date(datumOd.getTime()));
+            ps.setDate(4, new java.sql.Date(datumDo.getTime()));
             ps.executeUpdate();
             statement.close();
             conn.close();

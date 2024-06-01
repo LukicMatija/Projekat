@@ -13,7 +13,7 @@ import kompanija.Kompanija;
 import kompanija.kompanijaRepository.KompanijaRepository;
 import student.Student;
 import ugovor.Ugovor;
-
+import ugovor.ugovorRepository.ugovorRepos;
 /**
  *
  * @author mluki
@@ -163,7 +163,8 @@ public class KompanijaForma extends javax.swing.JFrame {
                 gf.getTxtFieldBrInd().setText(student.getIndeks());
                 gf.getTxtFieldStudMail().setText(student.getStudentskiMail());
             }
-            
+            ugovorRepos ur = new ugovorRepos();
+            gf.ugovori = ur.napraviListu(kompanija.getIdKompanije());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Niste izabrali studenta", "Greska", JOptionPane.ERROR_MESSAGE);
         }

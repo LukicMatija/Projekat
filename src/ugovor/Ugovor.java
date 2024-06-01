@@ -15,7 +15,13 @@ public class Ugovor {
     private int idKompanije;
     private Date datumOd;
     private Date datumDo;
-    private boolean aktivan;
+
+    public Ugovor(int idUgovora, int idKompanije, Date datumOd, Date datumDo) {
+        this.idUgovora = idUgovora;
+        this.idKompanije = idKompanije;
+        this.datumOd = datumOd;
+        this.datumDo = datumDo;
+    }
 
     public int getIdUgovora() {
         return idUgovora;
@@ -47,13 +53,5 @@ public class Ugovor {
 
     public void setDatumDo(Date datumDo) {
         this.datumDo = datumDo;
-    }
-
-    public boolean isAktivan() {
-        return aktivan;
-    }
-
-    public void setAktivan(boolean aktivan) {
-        this.aktivan = aktivan;
     }
 }
