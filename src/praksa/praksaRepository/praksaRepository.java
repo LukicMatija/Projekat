@@ -7,6 +7,7 @@ package praksa.praksaRepository;
 import java.sql.*;
 import java.util.Date;
 import java.util.LinkedList;
+import javax.swing.JOptionPane;
 
 import praksa.Praksa;
 
@@ -31,13 +32,14 @@ public class praksaRepository {
             ps.executeUpdate();
             statement.close();
             conn.close();
+            JOptionPane.showMessageDialog(null, "Uspesno dodato", "Dodavanje prakse", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException ex) {
             System.out.println(ex);
         }
     }
     public void prikazi(){
         try {
-            //LinkedList<Praksa> listaPraksi = new LinkedList<>();
+            
             String url = "jdbc:mysql://localhost:3306/projekat";
             String username = "root";
             String password = "";

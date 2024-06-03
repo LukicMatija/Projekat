@@ -47,7 +47,7 @@ public class GlavnaForma extends javax.swing.JFrame {
         txtPIB = txtFieldPIB;
     }
     public LinkedList<Student> studenti = new LinkedList<>();
-    public static LinkedList<Ugovor> ugovoriMF = null;
+    public LinkedList<Ugovor> ugovori = null;
     public Kompanija kompanija = null;
     public LinkedList<Kompanija> kompanije = null;
     public Student student = null;
@@ -132,7 +132,7 @@ public class GlavnaForma extends javax.swing.JFrame {
         this.txtFieldStudProg = txtFieldStudProg;
     }
     public Date najveciUgovor(LinkedList<Ugovor> ugovori){
-        Date najveciDatum = new Date(2000, 1, 1);
+        Date najveciDatum = new Date(100, 1, 1);
         for (Ugovor ugovor : ugovori) {
             if(najveciDatum.before(ugovor.getDatumDo())){
                 najveciDatum = ugovor.getDatumDo();
@@ -178,8 +178,10 @@ public class GlavnaForma extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jButton2 = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jDateOd = new com.toedter.calendar.JDateChooser();
+        jDateDo = new com.toedter.calendar.JDateChooser();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -400,9 +402,13 @@ public class GlavnaForma extends javax.swing.JFrame {
 
         jLabel11.setText("UNESITE PRAKSU");
 
-        jTextField1.setText("jTextField1");
-
         jLabel12.setText("Unesite datum od kog je krenula praksa:");
+
+        jLabel13.setText("Unesite datum do kog je trajala praksa:");
+
+        jDateOd.setDateFormatString("d. M. y.");
+
+        jDateDo.setDateFormatString("d. M. y.");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -424,23 +430,35 @@ public class GlavnaForma extends javax.swing.JFrame {
                                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(157, 157, 157))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(250, 250, 250))))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(28, 28, 28)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jDateOd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jDateDo, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
+                                .addGap(180, 180, 180))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel11)
-                .addGap(13, 13, 13)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel11)
+                        .addGap(16, 16, 16)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12)
+                            .addComponent(jDateOd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(45, 45, 45)
+                        .addComponent(jLabel13))
+                    .addComponent(jDateDo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
@@ -477,18 +495,37 @@ public class GlavnaForma extends javax.swing.JFrame {
         StudentForma sf = new StudentForma();
         sf.kompanija = kompanija;
         sf.kompanije = kompanije;
-        sf.ugovori = ugovoriMF;
+        sf.ugovori = ugovori;
         sf.setVisible(true);
         //this.setVisible(false);
     }//GEN-LAST:event_btnIzaberiStudActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if(ugovoriMF != null && najveciUgovor(ugovoriMF).before(new Date())){
-            JOptionPane.showMessageDialog(null, "Ova kompanija nema vazeci ugovor", "Greska", JOptionPane.ERROR_MESSAGE);
+        System.out.println(jDateDo.getDate());
+        System.out.println(ugovori.isEmpty());
+        if(jDateOd.getDate()==null || jDateDo.getDate()==null){
+            JOptionPane.showMessageDialog(null, "Niste izabrali datum", "Greska", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        if(student==null || kompanija==null){
+            JOptionPane.showMessageDialog(null, "Niste izabrali studenta ili kompaniju", "Greska", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        for (Ugovor ugovor : ugovori) {
+            System.out.println(ugovor.getDatumDo()); 
+        }
+        System.out.println("Najveci ugovor" + najveciUgovor(ugovori));
+        if(ugovori.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Ova kompanija nema ugovor", "Greska", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if(ugovori != null && (najveciUgovor(ugovori).before(jDateDo.getDate()))){
+            JOptionPane.showMessageDialog(null, "Ova kompanija nema vazeci ugovor za vreme trajanja prakse", "Greska", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
         try {
-            //praksaRepository.dodaj(student.getIdStudent(), kompanija.getIdKompanije(), datumOd, datumDo);
+            praksaRepository.dodaj(student.getIdStudent(), kompanija.getIdKompanije(), jDateOd.getDate(), jDateDo.getDate());
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -532,10 +569,13 @@ public class GlavnaForma extends javax.swing.JFrame {
     private javax.swing.JButton btnIzaberiStud;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private com.toedter.calendar.JDateChooser jDateDo;
+    private com.toedter.calendar.JDateChooser jDateOd;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -549,7 +589,6 @@ public class GlavnaForma extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField txtFieldBrInd;
     private javax.swing.JTextField txtFieldIme;
     private javax.swing.JTextField txtFieldImeKomp;

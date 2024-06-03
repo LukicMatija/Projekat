@@ -49,7 +49,7 @@ public class KompanijaForma extends javax.swing.JFrame {
         tblKompanije = new javax.swing.JTable();
         btnSacuvaj = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Ime kompanije:");
 
@@ -162,8 +162,8 @@ public class KompanijaForma extends javax.swing.JFrame {
                 GlavnaForma.Instance.getTxtFieldStudMail().setText(student.getStudentskiMail());
             }
             ugovorRepos ur = new ugovorRepos();
-            GlavnaForma.ugovoriMF = ur.napraviListu(GlavnaForma.Instance.kompanija.getIdKompanije());
-            for (Ugovor ugovor : GlavnaForma.ugovoriMF) {
+            GlavnaForma.Instance.ugovori = ur.napraviListu(k.getIdKompanije());
+            for (Ugovor ugovor : GlavnaForma.Instance.ugovori) {
                 System.out.println(ugovor.toString());
             }
         } catch (Exception e) {

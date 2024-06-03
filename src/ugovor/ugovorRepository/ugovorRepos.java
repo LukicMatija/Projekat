@@ -31,10 +31,10 @@ public class ugovorRepos {
             String password = "";
             Connection conn = DriverManager.getConnection(url, username, password);
             String upit = "SELECT * FROM ugovor WHERE IDKompanije = ?";
-            //java.sql.Statement statement = conn.createStatement();
+            
             PreparedStatement ps = conn.prepareStatement(upit);
             ps.setInt(1, idK);
-            //java.sql.ResultSet rs2 = statement.executeQuery(upit);
+            
             
             ResultSet rs = ps.executeQuery();
             

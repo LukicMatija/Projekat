@@ -50,7 +50,7 @@ public class StudentForma extends javax.swing.JFrame {
         tblStudenti = new javax.swing.JTable();
         btnSacuvaj = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Ime studenta:");
 
@@ -158,7 +158,7 @@ public class StudentForma extends javax.swing.JFrame {
             GlavnaForma.Instance.student = s;
             GlavnaForma.Instance.kompanija = kompanija;
             GlavnaForma.Instance.kompanije = kompanije;
-            GlavnaForma.ugovoriMF = ugovori;
+            GlavnaForma.Instance.ugovori = ugovori;
             GlavnaForma.Instance.getTxtFieldIme().setText(s.getIme());
             GlavnaForma.Instance.getTxtFieldPrezime().setText(s.getPrezime());
             GlavnaForma.Instance.getTxtFieldStepenStud().setText(s.getStepenStudija());
